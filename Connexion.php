@@ -47,7 +47,7 @@
                     <input type="int" class="form-input" name="phone" placeholder="Numero telephone">
                     <input type="password" class="form-input" name="password" placeholder="Mot de passe">
                     <input type="submit" value="Se Conneter" name="submit" class="form-button">
-                    <p class="form-phrase">Vous êtes nouveau ici?<a href="Inscription.php">S'inscrire</a></p>
+                    <p class="form-phrase">Vous êtes nouveau ici?<a class="con" href="Inscription.php">S'inscrire</a></p>
 
            <?php if (! empty($msgerreur)) { ?>
     <p class="msgErreur"><?php echo $msgerreur; ?></p>
