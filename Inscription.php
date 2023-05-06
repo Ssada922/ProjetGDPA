@@ -78,7 +78,7 @@
                      <input type="password" class="form-input" name="password" placeholder="Votre mot de passe" minlength = "8" required />
                      <input type="submit" name="submit" value="S'inscrire" class="form-button" />
                      <p class="form-phrase">Déjà inscrit? 
-                     <a href="Connexion.php">Connectez-vous ici</a></p>
+                     <a class="con" href="Connexion.php">Connectez-vous ici</a></p>
                </form>
 <?php } ?>
 </body>
