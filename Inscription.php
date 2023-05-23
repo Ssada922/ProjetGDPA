@@ -15,28 +15,34 @@
       && !empty($_POST['age']) && isset($_POST['password']) && !empty($_POST['password'])){
         //Recuperation des valeurs des variables avec securite
           $prenom = htmlspecialchars($_POST['prenom']); 
-          $prenom = mysqli_real_escape_string($conn, $prenom);
+          $prenom= stripslashes($prenom);
 
           $nom = htmlspecialchars($_POST['nom']);
-          $nom = mysqli_real_escape_string($conn, $nom);
+          $nom = stripslashes($nom);
 
           $phone = htmlspecialchars($_POST['phone']);
-          $phone = mysqli_real_escape_string($conn, $phone);
+          $phone = stripslashes($phone);
 
           $sexe = htmlspecialchars($_POST['sexe']);
-          $sexe = mysqli_real_escape_string($conn, $sexe);
+          $sexe = stripslashes($sexe);
 
           $age = htmlspecialchars($_POST['age']);
-          $age = mysqli_real_escape_string($conn, $age);
+          $age = stripslashes($age);
 
           $password = htmlspecialchars($_POST['password']);
-          $password = mysqli_real_escape_string($conn, $password);
+          $password = stripslashes($password);
            //Creation du requete d'insertion des valeurs de la variable dans la table
              $req = "INSERT into `personnels` (prenom, nom, phone, sexe, age, statut, password)
-        VALUES ('$prenom', '$nom', '$phone', '$sexe', '$age', 'personnel', '$password')";/*".hash('sha256', $password)."*/
-              $reqtemp = mysqli_query($conn, $req);
-
-                  if($reqtemp){
+        VALUES (:prenom, :nom, :phone, :sexe, :age, 'personnel', :password)";/*".hash('sha256', $password)."*/
+              $reqtemp = $pdo->prepare($req);
+              $reqtemp ->bindParam(':prenom', $prenom);
+              $reqtemp ->bindParam(':nom', $nom);
+              $reqtemp ->bindParam(':phone', $phone);
+              $reqtemp ->bindParam(':sexe', $sexe);
+              $reqtemp ->bindParam(':age', $age);
+              $reqtemp ->bindParam(':password', $password);
+              $ok = $reqtemp->execute();
+                  if($ok){
                     echo "<div class='msgReussi'>
                     <h2>Vous êtes inscrit avec succès.</h2>
                     <p>Cliquez ici pour vous <a classe='msgReussii' href='Connexion.php'>connecter</a></p>
@@ -78,7 +84,7 @@
                      <input type="password" class="form-input" name="password" placeholder="Votre mot de passe" minlength = "8" required />
                      <input type="submit" name="submit" value="S'inscrire" class="form-button" />
                      <p class="form-phrase">Déjà inscrit? 
-                     <a class="con" href="Connexion.php">Connectez-vous ici</a></p>
+                     <a href="Connexion.php">Connectez-vous ici</a></p>
                </form>
 <?php } ?>
 </body>
