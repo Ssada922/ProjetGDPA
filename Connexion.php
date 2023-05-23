@@ -1,3 +1,7 @@
+<?php  
+//Initialisation de la session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +11,8 @@
 </head>
 <body>
 <?php
-  //Connexion a la base de donnee
-   require('configuration.php');
-   //Initialisation de la session
-       session_start();
+   //Connexion a la base de donnee
+   require('configuration.php'); 
 
        if (isset($_POST['phone']) && !empty($_POST['phone'])){ 
            $phone = htmlspecialchars($_POST['phone']);
