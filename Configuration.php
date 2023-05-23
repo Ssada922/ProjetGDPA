@@ -1,11 +1,15 @@
-<?php //Connexion a la base de donne GDPA
- define('DB_SERVER','localhost');
- define('DB_USERNAME','Ssada');
- define('DB_PASSWORD','09-02-2002');
- define('DB_NAME','gdpa');
-    $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-     if($conn === false){
-            
-       die("ERREUR: Impossible de se connecter a la base de donee.".mysqli_connect_error());
-     }
-?>
+<?php
+  $host = 'localhost';
+  $dbname = 'gdpa';
+  $username = 'root';
+  $password = '';
+          try{
+
+           $pdo = new PDO("mysql: host = $host; dbname = $dbname", $username, $password);
+          // echo"Vous avez connecté à la base de données $dbname avec succès en tant que $username"; ca s'affiche dans la page raison pour laquelle j'ai commente
+           $pdo->exec("USE $dbname");
+
+        }catch(PDOException $e){
+           echo $e->getMessage();
+           exit();
+  }
