@@ -1,7 +1,7 @@
 <?php
    session_start(); //Initialisation de la session
      if(!isset($_SESSION['phone'])){
-        header('location:Connexion.php');
+        header('location:Index.php');
         exit();
      }
 ?>
@@ -15,10 +15,11 @@
         <link rel="stylesheet" href="Personnel.css">
     </head>
       <body>
+     
         <section class="container" >
            <header>
                  <nav>  
-                   <img width="" height="" src="logoaccueil.png" alt="">
+                   <img class="img" width="" height="" src="logoaccueil.png" alt="">
                    <h2>Market Enterprise<strong>.</strong></h2>
                    <ul><li><a href="AccueilPersonnel.php">Accueil</a></li></ul>
                    <ul><li><a href="boutique.php">Boutique</a></li></ul>
@@ -27,9 +28,9 @@
                   </nav>
            </header>
            <main>
-            
+            <img class="imgMain" src="accueilPersonnel.png" alt="">
            </main>
-           <aside class="containerAside" >
+           <aside class="containerAside">
             <div class="items1" >
               <h1>Transformer votre</br>entreprise</h1>
             <!--</div>-->
@@ -39,10 +40,12 @@
                 </div>
             </div>
             <div class="items3">
-               <button><a href="#">Voir la liste des personnels</a></button>
+               <button><a href="#">Les personnels</a></button>
             </div>
            </aside>
-           <footer></footer>
+           <footer>
+            <p>Tous droits réservés aux personnels de l'entreprise &copy coparight Juin 2023</p>
+           </footer>
         </section>   
       </body>
   </html>
