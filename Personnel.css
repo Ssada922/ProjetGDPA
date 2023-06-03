@@ -1,8 +1,8 @@
 body{
-    background-color: green;
+    background-color: rgb(251, 250, 250);;
     margin: 0; 
     width: 100%;
-    font-family: Arial, sans-serif;
+    font-family: "Arial", sans-serif;
 }
 .container{
     margin: auto;
@@ -26,7 +26,7 @@ main{
     grid-area: main;
 }
 aside{
-    background-color: green;
+    background-color: rgb(251, 250, 250);;
     grid-area: aside;
 }
 footer{
@@ -35,7 +35,7 @@ footer{
     text-align: center;
 }
 header{
-    background-color: green;
+    background-color: rgb(251, 250, 250);
     width: 100%;
 }
 nav{
@@ -55,17 +55,21 @@ nav ul li a{
     text-decoration: none;
     font-size: 15px;
     font-weight: bolder;
-    color: white;
+    color: black;
     padding: 10px;
 }
 .butNav{
  /* float: right;
   margin-right: 20px; */
-  background-color: rgb(39, 234, 39);
-  padding: 9px;
+  background-color: rgb(39, 234, 39) ;
+  color: white;
+  padding: 10px 20px;
   border: none;
   outline: none;
   border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   
 }
 nav ul li:last-child {
@@ -81,9 +85,8 @@ a:hover{
     outline: none;
     border: none;
     border-radius: 15px;
-
 }
-img{
+img.img{
     float: left;
     margin-left: 10px;
     width: 60px;
@@ -91,29 +94,33 @@ img{
     border: none;
     outline: none;
     border-radius: 50px;
+    
 }
 h2{
-    color: white;
+    color: black;
     font-size: 17px;
     font-weight: bolder;
+   /* text-shadow: 2px 2px 10px rgb(67, 67, 67);*/
 }
 h2 strong{
-   color:  rgb(39, 234, 39);
+   color:  rgb(39, 234, 39); 
 }
 .containerAside{
-    background-color: green;
+    background-color: rgb(251, 250, 250);;
 }
 h1{
     color:  rgb(39, 234, 39);
+    text-shadow: 2px 2px 5px green;
     font-size: 35px;
     font-weight: bolder;
     text-align: left;
     overflow: visible;
     margin-left: 23%;
+    letter-spacing: 0.8px;
    /* margin-top: 23%; */
 }
 p{   
-    color:  white;
+    color:  black;
     font-size: 17px;
     text-align: left;
     overflow: none;
@@ -123,12 +130,14 @@ p{
     line-height: 1.5;
 }
 .items2{
-    box-shadow: -20px -10px 30px rgb(18, 254, 18);
+    box-shadow: -20px -10px 30px rgb(25, 255, 25);
     width: 65%;
     height: 80%;
     overflow: hidden;
     border-radius: 15px;
     margin-left: 23%;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    
 }
 .items3{
     margin-left: 23%;
@@ -136,17 +145,21 @@ p{
 }
 aside button { 
     background-color: rgb(39, 234, 39);
-    padding: 15px;
+    padding: 14px 20px;
     width: 40%;
     margin-top: 25px;
     border: none;
     outline: none;
     border-radius: 19px;  
     cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
 }
 aside button a{
     text-decoration: none; 
-    color: black;
+    color: white;
 }
 aside button:hover{
     background-color:  orangered;
@@ -154,10 +167,43 @@ aside button:hover{
     cursor: pointer;
 }
 footer{
-    background-color: green;
+    margin-top: 10px;
+    background-color: black;
 }
 main{
-    background-color: green;
+    background-color: rgb(251, 250, 250);;
+}
+.imgMain{
+    position: relative;
+    top: 10%;
+    right: 8%;
+    width: 85%;
+    height: 90%;
+    visibility: visible;
+    opacity: 1;
+    box-shadow: 10px 5px 5px rgb(251, 250, 250);
+    border-bottom-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+@keyframes SsadaAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-
+img.imgMain{
+    animation: SsadaAnimation 6s;
+}
+.img, .imgMain{
+    cursor: pointer;
+}
+footer p{
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+   /* text-shadow: 2px 2px 55px white; */
+}
