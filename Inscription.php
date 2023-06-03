@@ -98,14 +98,14 @@
           $nettoieTempon = ob_get_clean(); //Netoyyage du contenu en tempon
           echo $nettoieTempon;
    ?>
-               <form class="container" action="" method="post">
+               <form class="containerIns" action="" method="post">
                      <h1 class="form-titre">S'inscrire</h1>
                      <label class="label">Prenom</label>
-                     <input type="text" class="form-input" name="prenom"  placeholder="Votre prenom" required />
+                     <input type="text" class="form-inputIns" name="prenom"  placeholder="Votre prenom" required />
                      <label class="label">Nom</label>
-                     <input type="text" class="form-input" name="nom"  placeholder="Votre nom" required />
+                     <input type="text" class="form-inputIns" name="nom"  placeholder="Votre nom" required />
                      <label class="label">Numero de téléphone</label>
-                     <input type="int" class="form-input" name="phone"  placeholder="Votre numero de téléphone" required />
+                     <input type="int" class="form-inputIns" name="phone"  placeholder="Votre numero de téléphone" required />
                      <label class="label">Age</label>
                      <select type="int" class="input-choix"  name="age">
                         <option>18</option>
@@ -134,7 +134,7 @@
                         <option>Feminin</option>
                       </select>
                       <label class="label">Mot de passe</label>
-                     <input type="password" class="form-input" name="password" placeholder="Votre mot de passe" minlength = "8" required />
+                     <input type="password" class="form-inputIns" name="password" placeholder="Votre mot de passe" minlength = "8" required />
                      <input type="submit" name="submit" value="S'inscrire" class="form-button" />
                      <p class="form-phrase">Déjà inscrit? 
                      <a class="hrefbas" href="Index.php">Connectez-vous ici</a></p>
