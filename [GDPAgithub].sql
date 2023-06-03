@@ -54,10 +54,11 @@ CREATE TABLE `personnels` (
   `age` int(10) NOT NULL,
   `sexe` varchar(15) NOT NULL,
   `statut` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id_pers`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+ALTER TABLE `personnels` ADD UNIQUE(`phone`);
 
 --
 -- Dumping data for table `personnels`
@@ -65,7 +66,10 @@ CREATE TABLE `personnels` (
 
 LOCK TABLES `personnels` WRITE;
 /*!40000 ALTER TABLE `personnels` DISABLE KEYS */;
-INSERT INTO `personnels` VALUES (1,'Sada','NDIAYE',704610870,28,'Masculin','personnel','sadandiaye'),(2,'Habib','NDIAYE',776548855,27,'Masculin','admin','habibndiaye08'),(3,'Seynabou Julienne','Venance',768763462,20,'Feminin','personnel','123456789');
+-- INSERT INTO `personnels` VALUES (1,'Sada','NDIAYE',704610870,28,'Masculin','personnel','sadandiaye'),(2,'Habib','NDIAYE',776548855,27,'Masculin','admin','habibndiaye08'),(3,'Seynabou Julienne','Venance',768763462,20,'Feminin','personnel','123456789');
+INSERT INTO `personnels` VALUES (1,'Sada','NDIAYE',704610870,28,'Masculin','personnel','e8b703abd7865cdcc4258b61700bd45865ab793ab1e04b5918c4daa5da576f61278b10c84c468b558fb4c4360936a1a179d9586b3200bcfe34493a2b3761f9a2'),
+                                (2,'Habib','NDIAYE',776548855,27,'Masculin','admin','0ce82f70e28f7d15f2493b910bf9d71241ade05c63d726c76b8332a5a6de85e0537afc25083f5d8728ffcd440e96b625f77fec2d518c0dcd5efc333d1fae06a8'),
+                                (3,'Seynabou Julienne','Venance',768763462,20,'Feminin','personnel','d9e6762dd1c8eaf6d61b3c6192fc408d4d6d5f1176d0c29169bc24e71c3f274ad27fcd5811b313d681f7e55ec02d73d499c95455b6b5bb503acf574fba8ffe85');
 /*!40000 ALTER TABLE `personnels` ENABLE KEYS */;
 UNLOCK TABLES;
 

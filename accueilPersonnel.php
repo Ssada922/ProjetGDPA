@@ -1,7 +1,7 @@
 <?php
    session_start(); //Initialisation de la session
      if(!isset($_SESSION['phone'])){
-        header('location:Index.php');
+        header('location: index.php');
         exit();
      }
 ?>

@@ -37,6 +37,7 @@
           
           $password = htmlspecialchars($_POST['password']); //J'avais enlever ca lors du hachage
           $password = stripslashes($password);
+          $password = hash('sha512',$password);
           //Hachage du mot de passe
         //  $passwordHash = password_hash($_POST['password'], PASSWORD_ARGON2I);
          
