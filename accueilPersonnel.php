@@ -12,14 +12,14 @@
         <meta charset="utf-8"  >  
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="Personnel.css">
+        <link rel="stylesheet" href="css/Personnel.css">
     </head>
       <body>
      
         <section class="container" >
            <header>
                  <nav>  
-                   <img class="img" width="" height="" src="logoaccueil.png" alt="">
+                   <img class="img" width="" height="" src="img/logoaccueil.png" alt="">
                    <h2>Market Enterprise<strong>.</strong></h2>
                    <ul><li><a href="AccueilPersonnel.php">Accueil</a></li></ul>
                    <ul><li><a href="boutique.php">Boutique</a></li></ul>
@@ -28,7 +28,7 @@
                   </nav>
            </header>
            <main>
-            <img class="imgMain" src="accueilPersonnel.png" alt="">
+            <img class="imgMain" src="img/accueilPersonnel.png" alt="">
            </main>
            <aside class="containerAside">
             <div class="items1" >
