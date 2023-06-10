@@ -1,25 +1,40 @@
 <?php
-// Initialiser la session
-session_start();
-// Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
-if (!isset($_SESSION['phone'])) {
-  header("Location: index.php");
-  exit();
-}
-?>
+  // Initialiser la session
+  session_start();
+  // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
+  if(!isset($_SESSION['phone'])){
+    header("Location: Index.php");
+    exit(); 
+  }
+  ?>
 <!DOCTYPE html>
-<html>
+<html> 
+    <head>
+        <title>Acceuil_Administrateur</title>
+        <meta charset="utf8" >
+        <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no"/>
+        <title>Administrateur</title>
+        <link rel="stylesheet" href="css/Admin.css" >
+    </head>
+    <body>
+      <section id="container" >
 
-<head>
-  <title>Acceuil_Administrateur</title>
-  <meta charset="utf8">
-  <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no" />
-  <title>Administrateur</title>
-  <link rel="stylesheet" href="Admin.css">
-</head>
+         <header>
+           <nav class="">
+                   <h2>Market <span>Enterprise</span><strong>.</strong> </h2>
+              <ul class="">
+              <li><a href="#">Accueil</a></li>
+              <li><a href="#">Boutique</a></li>
+              <li><a href="#">Personnels</a></li>
+              <li><a href="Deconnexion.php">Deconnexion</a></li>
+              </ul>
+              <button type="button" ><a href="ajoutCategories.php">Creer Categories</a></button>
+           </nav>
+         </header>
+         <aside>ASIDE</aside>
+         <main>MAIN</main>
+         <footer>FOOTER</footer>
 
-<body>
-  <a href="Deconnexion.php">Deconnexion</a>
-</body>
-
+      </section>
+    </body>
 </html>
