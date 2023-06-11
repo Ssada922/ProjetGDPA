@@ -93,7 +93,7 @@
                             <td><?=$recupCategories['libelle']; ?></td>
                             <td><?=$recupCategories['description']; ?></td>
                             <td><a class='button' href="supprimerCategories.php?id_cat=<?=$recupCategories['id_cat'];?>">Supprimer<!--<img class="iconeTableau" width="" height="" src="iconeSupprimer.png" alt="">--></a></td>
-                            <td><a  class='button' href="modifierCat.php?id_cat=<?=$recupCategories['id_cat'];?>?>">Modifier<!--<img class="iconeTableau" width="" height="" src="iconeModif.png" alt="">--></a></td>
+                            <td><a  class='button' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>">Modifier<!--<img class="iconeTableau" width="" height="" src="iconeModif.png" alt="">--></a></td>
                         </tr>
                         <?php } ?>
                      </table>       
