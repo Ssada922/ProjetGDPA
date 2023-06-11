@@ -9,7 +9,7 @@
         <title>Formulaire d'ajout de categories avec Popup</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/StyleformPupup.css">
+        <link rel="stylesheet" href="StyleformPupup.css">
     </head>
     <body>
         <?php
@@ -82,8 +82,7 @@
                         <tr>
                             <th>Libellé</th>
                             <th>Description</th>
-                            <th>Action1</th>
-                            <th>Action2</th>
+                            <th>Operations</th>
                         </tr>
                         <?php 
                         $selectCat = "SELECT * FROM categories";
@@ -92,8 +91,12 @@
                         <tr>
                             <td><?=$recupCategories['libelle']; ?></td>
                             <td><?=$recupCategories['description']; ?></td>
-                            <td><a class='button' href="supprimerCategories.php?id_cat=<?=$recupCategories['id_cat'];?>">Supprimer<!--<img class="iconeTableau" width="" height="" src="iconeSupprimer.png" alt="">--></a></td>
-                            <td><a  class='button' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>">Modifier<!--<img class="iconeTableau" width="" height="" src="iconeModif.png" alt="">--></a></td>
+                            <td colspan="2">
+                              <div class="imContainer" >
+                                  <a  class='' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"><img class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
+                                  <a class='' href="supprimerCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"><img class="iconeTableau" width="" height="" src="iconeSup.jpg" alt=""></a>
+                              </div>
+                            </td>
                         </tr>
                         <?php } ?>
                      </table>       
