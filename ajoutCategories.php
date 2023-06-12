@@ -82,7 +82,7 @@
                         <tr>
                             <th>Libellé</th>
                             <th>Description</th>
-                            <th>Operations</th>
+                            <th>Actions</th>
                         </tr>
                         <?php 
                         $selectCat = "SELECT * FROM categories";
