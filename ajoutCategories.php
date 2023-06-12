@@ -47,7 +47,7 @@
         }
         ?>
         
-    <div class="divButOuvrirPop">
+             <div class="divButOuvrirPop">
                 <p>Cliquer sur le boutton "ouvrir le popup" pour ajouter une Categorie.</p>
                 <button class="butOuvrirPop" onclick="ouvertureFormulaire()"><strong>Ouvrir le popup</strong></button>
              </div>
@@ -60,15 +60,14 @@
                 <label class="formLab" for="desc">Description</label>
                 <textarea class="formInput" name="description" id="desc" cols="30" rows="10" ></textarea>
                 <input class="butSubmit" type="submit" name="ajouter" value="Ajouter">
-                <input class="butSubmitFerm" type="submit" name="" value="Fermer" onclick="fermetureFormulaire()" >
+                <input class="butSubmitFerm" type="button" name="" value="Fermer" onclick="fermetureFormulaire()" >
             </form>
-            <?php if(!empty($smsErr)){  ?>
-               <p class="msgErreur"><?php echo $smsErr; ?></p>
+            <?php if(!empty($msgErr)){  ?>
+               <p class="msgErreur"><?php echo $msgErr; ?></p>
                <?php } ?>
         </div>
         <!--Script permettant l'ouverture et la fermeture du formulaire-->
-        <script>
-           
+        <script> 
           //Pour la fonction d'ouverture j'utilise diplay:block pour rendre visible en faite le formulaire
             function ouvertureFormulaire() {
               document.getElementById("monPopup").style.display = "block";
@@ -92,9 +91,9 @@
                             <td><?=$recupCategories['libelle']; ?></td>
                             <td><?=$recupCategories['description']; ?></td>
                             <td colspan="2">
-                              <div class="imContainer" >
-                                  <a  class='' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"><img class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
-                                  <a class='' href="supprimerCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"><img class="iconeTableau" width="" height="" src="iconeSup.jpg" alt=""></a>
+                              <div class="imContainer">
+                                <a  class='' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"> <img  class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
+                                <a  class='' href="supprimerCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"> <img class="iconeTableau" width="" height="" src="iconeSup.jpg" alt=""></a>
                               </div>
                             </td>
                         </tr>
