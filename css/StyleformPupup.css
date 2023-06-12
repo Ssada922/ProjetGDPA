@@ -156,12 +156,11 @@ a.button{
     font-weight: bold;   
 }
 .iconeTableau{
-    width: 40px;
-    height: 25px;
+    width: 25px;
+    height: 22px;
 }
 .imContainer{
     display: flex;
     justify-content: space-between;
 }
-
 
