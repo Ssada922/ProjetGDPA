@@ -74,7 +74,7 @@ p{
 .butSubmit{
     width: 160px;
     height: 40px;
-    background-color:   #1c87c9;
+    background-color:  #1c87c9;
     color: white;
     outline: none;
     border: 1px solid white;
@@ -163,4 +163,37 @@ a.button{
     display: flex;
     justify-content: space-between;
 }
-
+.list{
+    background-color:whitesmoke;
+    width: 355px;
+    height: 40px;
+    margin: 6px auto;
+    outline: none;
+    border: none;
+    color: #1c87c9;
+}
+.contenuListe{
+    background-color: #1c87c9;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px auto;
+    border: 1px solid blue;
+    outline: whitesmoke;
+    border-radius: 20px;
+}
+.myTable{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 70px  30px;
+    margin-top: 13%;
+    border-collapse: collapse;
+    background-color: white;
+    border-collapse: collapse;
+    outline: none;
+    z-index: 1;
+    box-shadow: 0 5px 50px white;
+}
