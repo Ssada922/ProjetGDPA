@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/styleAuth.css" />
+<link rel="stylesheet" href="styleAuth.css" />
 <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no"/>
 <title>Inscription</title>
 </head>
@@ -75,9 +75,15 @@
               //Verification si on a trouve un utilisateur avec la fonction rowCount()
               $rowCount = $recupPersonnel->rowCount();
               if($rowCount>0){
+                
+                $personnel = $recupPersonnel->fetch(PDO::FETCH_ASSOC); //Recuperation d'une ligne d'infos
+                $id_pers = $personnel['id_pers']; //Recuperation de l'id du personnel
+                $_SESSION['id_pers'] = $id_pers; //Stockage de l'id dans la variable sessions
+                
                  //Ouverture d'une session a cet utilisateur
                  $_SESSION['phone'] = $phone;
                  $_SESSION['password'] = $password;
+                 $id_pers = $_SESSION['id_pers'];
 
                  //Redirection dans la page d'accueil des personnels
                  $msgInsSucces = "Bravo, vous êtes inscrit avec succès.";
@@ -128,6 +134,20 @@
                         <option>34</option>
                         <option>35</option>
                         <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
                       </select>
                       <label class="label">Sexe</label>
                       <select type="text" class="input-choix" name="sexe">
