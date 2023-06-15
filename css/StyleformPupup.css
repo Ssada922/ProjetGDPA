@@ -134,6 +134,8 @@ th{
     font-size: 15px;
     font-weight: bold;
     text-align: center;
+    white-space: nowrap;
+    
 }
 td {
     border: 1px solid black;
@@ -184,16 +186,18 @@ a.button{
     border-radius: 20px;
 }
 .myTable{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 70px  30px;
-    margin-top: 13%;
-    border-collapse: collapse;
+    margin: 15px  auto;
+    min-width: 64%;
     background-color: white;
     border-collapse: collapse;
     outline: none;
     z-index: 1;
-    box-shadow: 0 5px 50px white;
+    box-shadow: 0 5px 10px #1c87c9 ;
+}
+#container{
+    background-color: #f3f0f0;
+    min-width: 60%;
+    margin: 1% 10%;
+    border: 1px solid beige;
+    border-radius: 75px;
 }
