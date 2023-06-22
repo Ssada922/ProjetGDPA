@@ -12,10 +12,8 @@
         <link rel="stylesheet" href="css/StyleformPupup.css">
     </head>
     <body>
-
         <?php 
-                
-            if(isset($_POST['ajouter'])){
+             if(isset($_POST['ajouter'])){
                 if(isset($_POST['libelle']) && !empty($_POST['libelle']) && isset($_POST['poids']) &&
                  !empty($_POST['poids']) && isset($_POST['prix']) && !empty($_POST['prix'])
                 && isset($_POST['date_expiration']) && !empty($_POST['date_expiration'])){
@@ -44,8 +42,9 @@
                  $resultat->execute();
                     if($resultat->rowCount()>0){ 
                        $infos =  $resultat->fetch(PDO::FETCH_ASSOC);
-                          if(isset($infos['id_cat']) && !empty($infos['id_cat'])){ 
 
+                          if(isset($infos['id_cat']) && !empty($infos['id_cat'])){ 
+                             
                             $insertProduit = "INSERT INTO Produits(libelle, poids, prix, date_expiration, id_pers, id_cat) VALUES (:libelle, :poids, :prix, :date_expiration, :id_pers, :id_cat)";
 
                             $statment = $pdo->prepare($insertProduit);
@@ -130,7 +129,7 @@
                           <td><?=$produit['date_expiration']; ?></td>
                           <td colspan="2" >
                             <div class="imContainer" >
-                              <a  class='' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"> <img  class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
+                              <a  class='' href="modifierProduit.php?id_prod=<?=$produit['id_prod'];?>"> <img  class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
                               <a href="supprimerProduit.php?id_prod=<?=$produit['id_prod']; ?>"> <img  class="iconeTableau" width="" height="" src="iconeSup.jpg" alt=""></a>
                             </div>
                           </td>
