@@ -1,10 +1,12 @@
 <?php
-   session_start(); //Initialisation de la session
-     if(!isset($_SESSION['phone'])){
-        header('location: index.php');
-        exit();
-     }
-?>
+session_start(); // Initialiser la session
+ob_start(); //Initialisation du tempon
+   if(!isset($_SESSION['id_pers'])){ // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
+    header("Location: Index.php");
+    exit(); 
+  }
+  $id_pers = $_SESSION['id_pers'];
+  ?>
 <!DOCTYPE html>
   <html>
     <head>
@@ -12,23 +14,23 @@
         <meta charset="utf-8"  >  
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/Personnel.css">
+        <link rel="stylesheet" href="Personnel.css">
     </head>
       <body>
      
         <section class="container" >
            <header>
                  <nav>  
-                   <img class="img" width="" height="" src="img/logoaccueil.png" alt="">
+                   <img class="img" width="" height="" src="logoaccueil.png" alt="">
                    <h2>Market Enterprise<strong>.</strong></h2>
                    <ul><li><a href="AccueilPersonnel.php">Accueil</a></li></ul>
                    <ul><li><a href="boutique.php">Boutique</a></li></ul>
                    <ul><li><a href="Deconnexion.php">Deconnexion</a></li></ul> 
-                   <ul><li><a class="butNav" href="AjoutDeProduit">+Ajouter un produit</a></li></ul>
+                   <ul><li><a class="butNav" href="AjoutProduit.php">+Ajouter un produit</a></li></ul>
                   </nav>
            </header>
            <main>
-            <img class="imgMain" src="img/accueilPersonnel.png" alt="">
+            <img class="imgMain" src="accueilPersonnel.png" alt="">
            </main>
            <aside class="containerAside">
             <div class="items1" >
