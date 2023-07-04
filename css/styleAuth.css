@@ -1,7 +1,7 @@
-body {
+ /*body {
     background: #c4c4c4;
     width: 100%;
-  }
+ }
   .container {
     border: 1px solid #c4c4c4;
     padding: 30px 25px 10px 25px;
@@ -61,7 +61,7 @@ body {
   .form-button {
     border-radius: 5px;
    /* background: #d2483c; */
-    background-color: green;
+   /* background-color: green;
     text-align: center;
     cursor: pointer;
     font-size: 20px;
@@ -123,3 +123,211 @@ body {
  .form-choix{
   margin-top: 4px;
  }
+ .msgSucces{
+  margin-top: 30px;
+  color: red;
+  font-size: 22px;
+  text-align: center;
+}*/
+body{
+  background-color: rgb(0, 0, 0);
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  }
+  #section{   
+display: grid;
+width: 100%;
+height: 600px;
+grid-template-areas: "header header header"
+                     "aside main article"
+                     "footer footer footer";
+grid-template-rows:  1fr 4fr 1fr;
+grid-template-columns: 1fr 6fr 1fr;
+margin: 0 20px 0 20px;
+  }
+body> section> header{
+grid-area: header;
+background-color: white;
+}
+body> section> aside{
+grid-area: aside;
+background-color: white;
+}
+body> section> main{
+grid-area: main;
+background-color: white;
+}
+body> section> footer{
+grid-area: footer;
+background-color: white;
+}
+header{
+width: 100%;
+background-color: white;
+}
+body> section> article{
+grid-area: article;
+background-color: white;
+}
+  .container{
+      width: 95%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap:10px;
+      border: 1px solid #c4c4c4;
+      padding: 30px 25px 10px 25px;
+      background-color: rgb(245, 243, 243);
+      border-radius: 50px;
+      outline: none;
+      border-style: none;
+      border-color: white;
+  }
+  .label{
+      font-size: 18px;
+      color: #AEAEAE;
+      margin-left: 5px;
+  }
+  .formInput{
+      font-size: 14px;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 25px;
+      margin-top: 6px;
+      padding-left:10px;
+      border-radius: 5px;
+      width: 400px;
+      height: 50px;
+      outline: none;
+      border-radius: 50px;
+      background-color: #dedbdb;
+      color: #1c87c9;
+  }
+  .formInputSelect{
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 25px;
+    margin-top: 6px;
+    padding-left:10px;
+    border-radius: 5px;
+    width: 416px;
+    height: 52px;
+    outline: none;
+    border-radius: 50px;
+    background-color: #dedbdb;
+    color: #1c87c9;
+  }
+  option{
+    background-color: rgb(251, 250, 250);
+    color: #1c87c9;
+    font-size: 15px;
+  }    
+  .formbutton {
+      width: 24%;
+      padding: 10px 17px;
+      border-radius: 12px;
+      margin-left: 70%;
+      background-color: #1c87c9;
+      text-align: center;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      border: 0;
+      outline:0;
+    }
+  p{
+      color:  rgb(130, 93, 165);
+      font-size: 15px;
+      margin: 8px auto;
+  }
+  .form-phrase
+    {
+      text-align:center;
+      margin-bottom:0px;
+    }
+    a
+    {
+      text-decoration:none;
+      font-size:17px;
+      color:#1c87c9
+   }
+  .containerCon{
+   /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    margin: 100px auto;
+    width: 360px;
+    border: 1px solid #c4c4c4;
+    padding: 30px 25px 10px 25px;
+    background-color: rgb(245, 243, 243);
+    border-radius: 50px;
+    outline:none;
+    border-color: none;
+    border-style: none;
+  }
+  .formInputcon{
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid  #ddd;
+    margin-bottom: 25px;
+    margin-top: 6px;
+    padding-left:10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 90%;
+    height: 50px;
+    outline: none;
+    border-radius: 50px;
+    background-color:  #ddd ;
+    color:#1c87c9;
+}
+.formbuttonCon {
+  width: 88%;
+  padding: 12px 20px;
+  margin-left: 20px;
+  border-radius: 12px;
+  background-color: #1c87c9;
+  text-align: center;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  border: 0;
+  outline:0;
+  letter-spacing: 0.5px;
+}
+  .form-titre{
+    padding: 5px 10px;
+    color: #AEAEAE;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 30%;
+  }
+  #mysection{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+  }
+  .one{
+    background-color: blue;
+  }
+  .two{
+    background-color: aquamarine;
+  }
+  .msgSucces{
+    margin-top: 30px;
+    color: red;
+    font-size: 22px;
+    text-align: center;
+  }
+  .msgErreur{
+    color: red;
+    font-size: 18px;
+    text-align: center;
+  }
