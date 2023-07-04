@@ -1,169 +1,147 @@
 <?php 
-//Ouverture de la session
-  session_start();
-  ob_start(); // Demarrage de la mise en tempon
+session_start();//Ouverture de la session
+ob_start(); // Demarrage de la mise en tempon
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/styleAuth.css" />
+<link rel="stylesheet" href="styleAuth.css" />
 <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no"/>
 <title>Inscription</title>
 </head>
 <body>
 <?php 
- // require 'configuration.php';
-  include_once('Configuration.php'); //Connexion a la base de donnee GDPA
-     if (isset($_POST['prenom']) && !empty($_POST['prenom']) && isset($_POST['nom']) && //Testons si les variables existent et qu'elles sont non nulles
-     !empty($_POST['nom']) && isset($_POST['phone']) && !empty($_POST['phone']) 
-     && isset($_POST['sexe']) && !empty($_POST['sexe']) && isset($_POST['age'])
-      && !empty($_POST['age']) && isset($_POST['password']) && !empty($_POST['password'])){
+include_once('Configuration.php'); //Connexion a la base...
+$messageMail = 'Votre adresse email est invalide'; //Initialisation des variable messages
+$messageTel = 'Votre numéro de téléphone est invalide.';
+$messageSuc = ''; 
+          if(isset($_POST['inscrire'])){ //Verifions si le formulaire est soumis
 
-        //Recuperation des valeurs des variables avec securite
-          $prenom = htmlspecialchars($_POST['prenom']); 
-          $prenom= stripslashes($prenom);
+               if(!empty($_POST['prenom']) && !empty($_POST['nom']) 
+                  && !empty($_POST['phone']) && !empty($_POST['age']) && 
+                  !empty($_POST['sexe']) && !empty($_POST['password'])){ // Verifions si aucun champs n'est vide
 
-          $nom = htmlspecialchars($_POST['nom']);
-          $nom = stripslashes($nom);
+                    $prenom = htmlspecialchars($_POST['prenom']); //Recupertion des donnees du formulaire contre l'injection de code
+                    $prenom = stripslashes($prenom); //Contre les antislashs
+                    $prenom = trim($prenom); //Contre l'espace blanc
+           
+                    $nom = htmlspecialchars($_POST['nom']);
+                    $nom = stripslashes($nom);
+                    $nom = trim($nom);
+           
+                    $phone = htmlspecialchars($_POST['phone']);
+                    $phone = stripslashes($phone);
+                    $phone = trim($phone);
+           
+                    $sexe = htmlspecialchars($_POST['sexe']);
+                    $sexe = stripslashes($sexe);
+                    $sexe = trim($sexe);
+           
+                    $age = htmlspecialchars($_POST['age']);
+                    $age = stripslashes($age);
+                    $age = trim($age);
+                    
+                    $password = htmlspecialchars($_POST['password']); //J'avais enlever ca lors du hachage
+                    $password = stripslashes($password);
+                    $password = trim($password);
+                    $password = hash('sha512',$password);
 
-          $phone = htmlspecialchars($_POST['phone']);
-          $phone = stripslashes($phone);
+                    $prefixesAutorises = ['70', '75', '76', '77', '78']; //Tableau de prefixe autorisé
+                      if(preg_match('/^(70|75|76|77|78)\d{7}$/', $phone)){ //Verifions si le  numéro de téléphone est valide.
+                          $insert = "INSERT INTO  `personnels` (prenom, nom, phone, sexe, age, statut, password) VALUES (:prenom, :nom, :phone, :sexe, :age, 'personnel', :password)"; //Requete d'insertion utilisateur
+                          $resultat = $pdo->prepare($insert); //Prepartion de la requete
+                          $resultat->bindParam(":prenom", $prenom, PDO::PARAM_STR);   //Liaison des paramètres aux variables 
+                          $resultat->bindParam(":nom", $nom, PDO::PARAM_STR);
+                          $resultat->bindParam(":phone", $phone, PDO::PARAM_INT);
+                          $resultat->bindParam(":sexe", $sexe,  PDO::PARAM_STR);
+                          $resultat->bindParam(":age", $age, PDO::PARAM_INT);
+                          $resultat->bindParam(":password", $password, PDO::PARAM_STR);
+                          $resultat->execute(); //Execution de la requete
+                            # echo "Votre numéro de téléphone est valide.";
 
-          $sexe = htmlspecialchars($_POST['sexe']);
-          $sexe = stripslashes($sexe);
+                          $select = "SELECT * FROM personnels WHERE phone = :phone AND password = :password ";
+                          $result = $pdo->prepare($select);
+                          $result->bindParam(":phone", $phone, PDO::PARAM_INT);   //Liaison des paramètres aux variables 
+                          $result->bindParam(":password", $password, PDO::PARAM_STR);
+                          $result->execute();
 
-          $age = htmlspecialchars($_POST['age']);
-          $age = stripslashes($age);
-          
-          $password = htmlspecialchars($_POST['password']); //J'avais enlever ca lors du hachage
-          $password = stripslashes($password);
-          $password = hash('sha512',$password);
-          //Hachage du mot de passe
-        //  $passwordHash = password_hash($_POST['password'], PASSWORD_ARGON2I);
-         
+                               if($result->rowCount()>0){ //Si un utilisateur est  trouvé
+                                   $ligne = $result->fetch(PDO::FETCH_ASSOC); //Recuperation de la ligne d'infos
+                                   $id_pers = $ligne['id_pers']; //Recuperation de l'id dans le tableau $ligne
+                                   $_SESSION['id_pers'] = $id_pers; //Stockage  de l'id dan la variable session
+                                   $_SESSION['phone'] = $phone; //Ouverture session
+                                   $_SESSION['password'] = $password;     
+                                        
+                                       if($ligne['statut'] == 'personnel'){
+                                          $messageSuc = "Bravo, vous êtes inscrit avec succès.";
+                                          header("refresh:3;url=AccueilPersonnel.php");
+                                       }else{
+                                          $messageSuc = "Bravo, vous êtes inscrit avec succès.";
+                                          header("refresh:3;url=Acceuil_Administrateur.php");
+                                       }
+                                   
 
-           //Creation du requete d'insertion des valeurs de la variable dans la table
-           $req =  "INSERT INTO `personnels` (prenom, nom, phone, sexe, age, statut, password) VALUES (:prenom, :nom, :phone, :sexe, :age, 'personnel', :password)";
+                               }else{
+                                # echo "Aucun uttilisateur trouvé"
+                               }
 
-           //Preparation de la requete
-              $reqtemp = $pdo->prepare($req); 
-
-           //Liaison des paramètres au nom de variable
-              $reqtemp->bindParam(":prenom", $prenom, PDO::PARAM_STR);    
-              $reqtemp->bindParam(":nom", $nom, PDO::PARAM_STR);
-              $reqtemp->bindParam(":phone", $phone, PDO::PARAM_INT);
-              $reqtemp->bindParam(":sexe", $sexe,  PDO::PARAM_STR);
-              $reqtemp->bindParam(":age", $age, PDO::PARAM_INT);
-              $reqtemp->bindParam(":password", $password, PDO::PARAM_STR);
-
-              //On execute la requete
-              $reqtemp->execute();
-
-              //Recuperation du numero de telephone et du mot de passe de l'utilisateur
-              $reqSelect = "SELECT * FROM personnels WHERE phone = :phone AND password = :password ";
-
-              //Preparation de le requete
-              $recupPersonnel = $pdo->prepare($reqSelect);
-
-              //Liaison des paramètres au nom de variable
-              $recupPersonnel->bindParam(":phone", $phone, PDO::PARAM_INT);
-              $recupPersonnel->bindParam(":password", $password, PDO::PARAM_STR);
-              
-              //Execution de la requete
-              $recupPersonnel->execute();
-
-              //Verification si on a trouve un utilisateur avec la fonction rowCount()
-              $rowCount = $recupPersonnel->rowCount();
-              if($rowCount>0){
-                
-                $personnel = $recupPersonnel->fetch(PDO::FETCH_ASSOC); //Recuperation d'une ligne d'infos
-                $id_pers = $personnel['id_pers']; //Recuperation de l'id du personnel
-                $_SESSION['id_pers'] = $id_pers; //Stockage de l'id dans la variable sessions
-                
-                 //Ouverture d'une session a cet utilisateur
-                 $_SESSION['phone'] = $phone;
-                 $_SESSION['password'] = $password;
-                 $id_pers = $_SESSION['id_pers'];
-
-                 //Redirection dans la page d'accueil des personnels
-                 $msgInsSucces = "Bravo, vous êtes inscrit avec succès.";
-
-                // header('location:AccueilPersonnel.php');
-                 header("refresh:3;url=AccueilPersonnel.php");
-
+                      }else{
+                        header("refresh:3;url=Inscription.php");
+                        echo "<p class ='msgSucces' >".$messageTel."<p>";
+                      }
               }else{
+               # echo"Aucun champs ne doit pas etre vide";
+              }
 
-              } 
-               //  echo "<div class='msgReussi'>
-                //  <h2>Vous êtes inscrit avec succès.</h2>
-                //   <p>Cliquez ici pour vous <a classe='msgReussii' href='Connexion.php'>connecter</a></p>
-                //   </div>";
-            
           }else{
-
-          }
-          $nettoieTempon = ob_get_clean(); //Netoyyage du contenu en tempon
+          # echo 'Veuiller valider le formualaire';
+           $nettoieTempon = ob_get_clean(); //Netoyyage du contenu en tempon
           echo $nettoieTempon;
-   ?>
-               <form class="containerIns" action="" method="post">
-                     <h1 class="form-titre">S'inscrire</h1>
-                     <label class="label">Prenom</label>
-                     <input type="text" class="form-inputIns" name="prenom"  placeholder="Votre prenom" required />
-                     <label class="label">Nom</label>
-                     <input type="text" class="form-inputIns" name="nom"  placeholder="Votre nom" required />
-                     <label class="label">Numero de téléphone</label>
-                     <input type="int" class="form-inputIns" name="phone"  placeholder="Votre numero de téléphone" required />
-                     <label class="label">Age</label>
-                     <select type="int" class="input-choix"  name="age">
-                        <option>18</option>
-                        <option>19</option>
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>23</option>
-                        <option>24</option>
-                        <option>25</option>
-                        <option>26</option>
-                        <option>27</option>
-                        <option>28</option>
-                        <option>29</option>
-                        <option>30</option>
-                        <option>31</option>
-                        <option>32</option>
-                        <option>33</option>
-                        <option>34</option>
-                        <option>35</option>
-                        <option>36</option>
-                        <option>37</option>
-                        <option>38</option>
-                        <option>39</option>
-                        <option>40</option>
-                        <option>41</option>
-                        <option>42</option>
-                        <option>43</option>
-                        <option>44</option>
-                        <option>45</option>
-                        <option>46</option>
-                        <option>47</option>
-                        <option>48</option>
-                        <option>49</option>
-                        <option>50</option>
-                      </select>
-                      <label class="label">Sexe</label>
-                      <select type="text" class="input-choix" name="sexe">
-                        <option>Masculin</option>
-                        <option>Feminin</option>
-                      </select>
-                      <label class="label">Mot de passe</label>
-                     <input type="password" class="form-inputIns" name="password" placeholder="Votre mot de passe" minlength = "8" required />
-                     <input type="submit" name="submit" value="S'inscrire" class="form-button" />
-                     <p class="form-phrase">Déjà inscrit? 
-                     <a class="hrefbas" href="Index.php">Connectez-vous ici</a></p>
-                     <?php
-            if(!empty($msgInsSucces)){ ?>
-    <p class="msgErreur"><?php echo $msgInsSucces; ?></p>
-           <?php } ?>
-       </form>
+          }
+
+?> 
+<section id="section" >
+                       <header></header>
+                       <aside></aside>
+                       <article></article>
+    <main>     
+      <form class="container" action="" method="post">
+        
+         <div>
+            <label class="label" for="pre">Prénom</label></br>
+            <input id="pre" class="formInput" type="text" name="prenom" placeholder="Votre prénom" required/></br>
+            <label class="label" for="nm">Nom</label></br>
+            <input id="nm" class="formInput" type="text" name="nom" placeholder="Votre nom" required/></br>
+            <label class="label" for="tel">Numéro téléphone</label></br>
+            <input id="tel" class="formInput" type="text" name="phone" placeholder="Votre numéro téléphone" required/></br> 
+            <p class="form-phrase">Déjà inscrit? 
+            <a href="Index.php">Connectez-vous ici</a></p>
+         </div> 
+         <div> 
+             <label class="label" >Sexe</label></br>
+                <select class="formInputSelect" type="text"  name="sexe">
+                 <option>Masculin</option>
+                 <option>Feminin</option>
+                </select>
+             <label class="label">Age</label>
+                <select class="formInputSelect" type=""  name="age">
+                  <?php for($age = 18; $age<=60; $age++): ?>
+                    <option values = "" ><?=$age; ?></option>
+                  <?php endfor; ?>
+                </select>
+             <label class="label" for="mdp">Mot de passe</label></br>
+            <input id="mpd" class="formInput" type="password" name="password" placeholder="Votre mot de passe" minlength="8" required/>
+            <input class="formbutton" type="submit" name="inscrire" value="S'inscrire" required/>
+         </div>
+           <?php
+           if(!empty($messageSuc)): ?>
+           <p class="msgSucces" ><?= $messageSuc;?></p>
+           <?php endif; ?>
+      </form>
+   
+    </main>
+    <footer></footer>
+        </section>
    
 </body>
 </html>
