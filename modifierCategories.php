@@ -1,8 +1,13 @@
 <?php
- session_start();
- ob_start();
- include_once('Configuration.php');
- 
+session_start();
+ob_start();
+    if(!isset($_SESSION['id_pers'])){
+       header("Location: Index.php");
+     exit(); 
+  }
+  $id_pers = $_SESSION['id_pers'];
+  include_once('Configuration.php');
+
 $libelle ='';
 $description ='';
     if(isset($_GET['id_cat']) && !empty($_GET['id_cat'])){
@@ -59,7 +64,7 @@ $description ='';
                 }
                </script>
             <div class="divButOuvrirPop">
-                <p>Cliquer sur le boutton "ouvrir le popup" pour modifier une Categorie.</p>
+                <p>Cliquer sur le boutton "ouvrir le popup" pour modifier la Categorie.</p>
                 <button class="butOuvrirPop" onclick="ouverturePopup()"><strong>Ouvrir le popup</strong></button>
             </div>
 
