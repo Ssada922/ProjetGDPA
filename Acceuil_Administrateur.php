@@ -1,11 +1,11 @@
 <?php
-  // Initialiser la session
-  session_start();
-  // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
-  if(!isset($_SESSION['phone'])){
+session_start(); // Initialiser la session
+ob_start();
+   if(!isset($_SESSION['id_pers'])){ // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
     header("Location: Index.php");
     exit(); 
   }
+  $id_pers = $_SESSION['id_pers'];
   ?>
 <!DOCTYPE html>
 <html> 
@@ -14,7 +14,7 @@
         <meta charset="utf8" >
         <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no"/>
         <title>Administrateur</title>
-        <link rel="stylesheet" href="css/Admin.css" >
+        <link rel="stylesheet" href="Admin.css" >
     </head>
     <body>
       <section id="container" >
