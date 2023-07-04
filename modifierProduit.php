@@ -1,7 +1,13 @@
 <?php
-  session_start();
-  include_once('Configuration.php');
+session_start();
+ob_start();
+    if(!isset($_SESSION['id_pers'])){
+       header("Location: Index.php");
+     exit(); 
+  }
+    $id_pers = $_SESSION['id_pers'];
 
+include_once('Configuration.php');
   if(isset($_GET['id_prod']) && !empty($_GET['id_prod'])){
     $id = $_GET['id_prod'];
       $req = "SELECT * FROM produits WHERE id_prod = ?";
@@ -64,7 +70,7 @@
         <title>Formulaire modification de produit avec Popup</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/StyleformPupup.css">
+        <link rel="stylesheet" href="StyleformPupup.css">
     </head>
     <body>
                       
@@ -81,7 +87,7 @@
              </script>
 
              <div class="divButOuvrirPop">
-                <p>Cliquer sur le boutton "ouvrir le popup" pour ajouter une Categorie.</p>
+                <p>Cliquer sur le boutton "ouvrir le popup" pour modifier le produit.</p>
                 <button class="butOuvrirPop" onclick="ouverturePopup()"><strong>Ouvrir le popup</strong></button>
              </div>
         
@@ -101,7 +107,7 @@
                 <label class="formLab" for="lib">Libelle</label>
                 <input class="formInput" id="lin" type="text" name="libelle" placeholder="Riz" value="<?=$libelle; ?>" required>
                 <label class="formLab" for="poi">Poids</label><br>
-                <input  class="formInput" id="poi" type="" name="poids" placeholder="6kg" value="<?=$poids; ?>" required>
+                <input  class="formInput" id="poi" type="" name="poids" placeholder="4kg" value="<?=$poids; ?>" required>
                 <label class="formLab" for="prx">Prix</label><br>
                 <input  class="formInput" id="prx" type="" name="prix" placeholder="1500" value="<?=$prix; ?>" required>
                 <label class="formLab date"   for="lib">Date d'expiration</label>
