@@ -1,7 +1,10 @@
 <?php
- session_start();
- ob_start();
- include_once('Configuration.php');
+session_start();
+ob_start();
+   if(!isset($_SESSION['id_pers'])){
+    header("Location: Index.php");
+    exit(); 
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,10 +12,11 @@
         <title>Formulaire d'ajout de produit avec Popup</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/StyleformPupup.css">
+        <link rel="stylesheet" href="StyleformPupup.css">
     </head>
     <body>
-        <?php 
+<?php 
+include_once('Configuration.php');
              if(isset($_POST['ajouter'])){
                 if(isset($_POST['libelle']) && !empty($_POST['libelle']) && isset($_POST['poids']) &&
                  !empty($_POST['poids']) && isset($_POST['prix']) && !empty($_POST['prix'])
@@ -98,7 +102,7 @@
                 <label class="formLab" for="lib">Libelle</label>
                 <input class="formInput" id="lin" type="text" name="libelle" placeholder="Riz" required>
                 <label class="formLab" for="poi">Poids</label><br>
-                <input  class="formInput" id="poi" type="" name="poids" placeholder="12" required>
+                <input  class="formInput" id="poi" type="" name="poids" placeholder="4kg" required>
                 <label class="formLab" for="prx">Prix</label><br>
                 <input  class="formInput" id="prx" type="" name="prix" placeholder="1500" required>
                 <label class="formLab date"   for="lib">Date d'expiration</label>
@@ -151,3 +155,5 @@
           </script>
     </body>
 </html>
+
+
