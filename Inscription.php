@@ -5,7 +5,7 @@ ob_start(); // Demarrage de la mise en tempon
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="styleAuth.css" />
+<link rel="stylesheet" href="css/styleAuth.css" />
 <meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no"/>
 <title>Inscription</title>
 </head>
