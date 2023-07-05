@@ -46,7 +46,6 @@ $messageSuc = '';
                     $password = trim($password);
                     $password = hash('sha512',$password);
 
-                    $prefixesAutorises = ['70', '75', '76', '77', '78']; //Tableau de prefixe autorisé
                       if(preg_match('/^(70|75|76|77|78)\d{7}$/', $phone)){ //Verifions si le  numéro de téléphone est valide.
                           $insert = "INSERT INTO  `personnels` (prenom, nom, phone, sexe, age, statut, password) VALUES (:prenom, :nom, :phone, :sexe, :age, 'personnel', :password)"; //Requete d'insertion utilisateur
                           $resultat = $pdo->prepare($insert); //Prepartion de la requete
