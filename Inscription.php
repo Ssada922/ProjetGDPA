@@ -68,6 +68,8 @@ $messageSuc = '';
                                    $ligne = $result->fetch(PDO::FETCH_ASSOC); //Recuperation de la ligne d'infos
                                    $id_pers = $ligne['id_pers']; //Recuperation de l'id dans le tableau $ligne
                                    $_SESSION['id_pers'] = $id_pers; //Stockage  de l'id dan la variable session
+                                   $prenom = $ligne['prenom']; //Recuperation du prénom de l'utilisateur
+                                   $_SESSION['prenom'] = $prenom; //Stockage du prénom dans un variable session
                                    $_SESSION['phone'] = $phone; //Ouverture session
                                    $_SESSION['password'] = $password;     
                                         
