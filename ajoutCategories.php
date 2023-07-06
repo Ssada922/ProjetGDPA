@@ -3,7 +3,7 @@ session_start();
 ob_start();
 ob_start();
 if(!isset($_SESSION['id_pers'])){
-    header("Location: Index.php");
+    header("Location: index.php");
     exit(); 
   }
      $id_pers = $_SESSION['id_pers'];
