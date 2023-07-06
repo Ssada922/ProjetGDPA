@@ -2,7 +2,7 @@
 session_start(); // Initialiser la session
 ob_start(); //Initialisation du tempon
    if(!isset($_SESSION['id_pers'])){ // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
-    header("Location: Index.php");
+    header("Location: index.php");
     exit(); 
   }
   $id_pers = $_SESSION['id_pers'];
