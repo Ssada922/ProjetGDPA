@@ -31,7 +31,8 @@ ob_start();
               <button type="button" ><a href="ajoutCategories.php">Creer Categories</a></button>
            </nav>
          </header>
-         <aside>ASIDE</aside>
+         <aside>
+          <?php echo"<p class='msgBienvenue'>Bienvenue ".$_SESSION['prenom']."</p>"; ?></aside>
          <main>MAIN</main>
          <footer>FOOTER</footer>
 
