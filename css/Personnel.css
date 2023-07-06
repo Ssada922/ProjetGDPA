@@ -207,3 +207,9 @@ footer p{
     text-decoration: none;
    /* text-shadow: 2px 2px 55px white; */
 }
+.msgBienvenue{
+    color: blueviolet;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 23%;
+}
