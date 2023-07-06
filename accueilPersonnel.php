@@ -33,6 +33,7 @@ ob_start(); //Initialisation du tempon
             <img class="imgMain" src="accueilPersonnel.png" alt="">
            </main>
            <aside class="containerAside">
+            <?php echo"<p class='msgBienvenue'>Bienvenue ".$_SESSION['prenom']."</p>"; ?>
             <div class="items1" >
               <h1>Transformer votre</br>entreprise</h1>
             <!--</div>-->
