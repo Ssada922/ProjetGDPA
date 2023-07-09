@@ -10,6 +10,16 @@ ob_start();
 
 $libelle ='';
 $description ='';
+$minLib = 3;
+$maxLib = 200;
+$minDes = 15;
+$maxDes = 250;
+$message = 'Le libellé ou description saisi n\'est pas dans</br>la fourcette du nombre de caractéres autorisées</br>
+           libellé['.$minLib.' '.$maxLib.'] et description['.$minDes.' '.$maxDes.'] qui sont valides';
+           ;
+$msg = "Assurez-vous que les champs libelle et description ne contiennent que</br> 
+des lettres majuscules, des lettres minuscules, des chiffres et des espaces.</br>
+Veuillez à exclure tout autre type de caractère.";
     if(isset($_GET['id_cat']) && !empty($_GET['id_cat'])){
      $recupId = $_GET['id_cat'];
      $selectCat = "SELECT * FROM categories WHERE id_cat = ?"; 
@@ -20,24 +30,38 @@ $description ='';
               $libelle = $infosCategories['libelle'];
               $description = $infosCategories['description'];
                   if(isset($_POST['ajouter'])){
+                       if(!empty($_POST['libelle']) && !empty($_POST['description'])){
                          $libelleSaisi = htmlspecialchars($_POST['libelle']);
                          $libelleSaisi = trim($libelleSaisi);
                          $libelleSaisi = stripslashes($libelleSaisi);
                          $descriptionSaisi = htmlspecialchars($_POST['description']);
                          $descriptionSaisi = trim($descriptionSaisi);
                          $descriptionSaisi = stripslashes($descriptionSaisi);
+                           if((strlen($libelleSaisi)>=$minLib && strlen($libelleSaisi)<=$maxLib) && (strlen($descriptionSaisi)>=$minDes && strlen($descriptionSaisi)<=$maxDes)){
+                              if(preg_match('/^[A-Za-z0-9 ]+$/', $libelleSaisi) && preg_match('/^[A-Za-z0-9 ]+$/', $descriptionSaisi) ){
+                                 $updateCat = "UPDATE categories SET libelle = ?, description = ? WHERE id_cat = ?";
+                                 $updateCat =  $pdo->prepare($updateCat);
+                                 $updateCat->execute(array($libelleSaisi, $descriptionSaisi, $recupId));
+                                    echo" <p class='msgReussi'>La catégorie a été modifiée avec succès à la base de données.</p> ";
+                                    header("refresh:3;url=ajoutCategories.php"); 
+                              }else{
+                                header("refresh:7;ajoutCategories.php");
+                                echo "<p class ='msgEchec' >".$msg."</p>";
+                                } 
+                          }else{
+                                 header("refresh:7;ajoutCategories.php");
+                                 echo "<p class ='msgEchec' >".$message."</p>";
+                         }   
+                      }else{
+                     # echo"Aucun champs ne doit pas etre vide";
+                } 
 
-                         $updateCat = "UPDATE categories SET libelle = ?, description = ? WHERE id_cat = ?";
-                         $updateCat =  $pdo->prepare($updateCat);
-                         $updateCat->execute(array($libelleSaisi, $descriptionSaisi, $recupId));
-                                         echo  " <p class='msgReussi'>La catégorie a été modifiée avec succès à la base de données.</p> ";
-                                         header("refresh:3;url=ajoutCategories.php");   
               }else{
-                     echo"";
+                     #echo"Le formulaire doit etre soumis";
               }
             }
           }else{
-            echo"";
+           # echo"";
           
 }
 ?>
