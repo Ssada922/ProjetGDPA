@@ -1,9 +1,8 @@
 <?php
 session_start();
 ob_start();
-ob_start();
 if(!isset($_SESSION['id_pers'])){
-    header("Location: index.php");
+    header("Location: Index.php");
     exit(); 
   }
      $id_pers = $_SESSION['id_pers'];
@@ -18,9 +17,16 @@ if(!isset($_SESSION['id_pers'])){
         <link rel="stylesheet" href="css/StyleformPupup.css">
     </head>
     <body>
-        <?php
+<?php
+$minLib = 3;
+$maxLib = 200;
+$minDes = 15;
+$maxDes = 250;
+$message = 'Le libellé ou description saisi n\'est pas dans</br>la fourcette du nombre de caractéres autorisées</br>
+           libellé['.$minLib.' '.$maxLib.'] et description['.$minDes.' '.$maxDes.'] qui sont valides';
+           ;
         if(isset($_POST['ajouter'])){
-            if(isset($_POST['libelle']) && !empty($_POST['libelle']) && isset($_POST['description']) && !empty($_POST['description'])){
+            if(!empty($_POST['libelle']) && !empty($_POST['description'])){
                 $libelle = htmlspecialchars($_POST['libelle']);
                 $libelle = stripslashes($libelle);
                 $libelle = trim($libelle);
@@ -28,28 +34,34 @@ if(!isset($_SESSION['id_pers'])){
                 $description = htmlspecialchars($_POST['description']);
                 $description = stripslashes($description);
                 $description = trim($description);
+                
+                 if((strlen($libelle)>=$minLib && strlen($libelle)<=$maxLib) && (strlen($description)>=$minDes && strlen($description)<=$maxDes)){
+                   $insertCategories = "INSERT INTO categories(libelle, description) VALUES (:libelle, :description)";
+                   $statement = $pdo->prepare($insertCategories);
+                   $statement->bindValue(":libelle", $libelle);
+                   $statement->bindValue(":description", $description);
+                     $isOk = $statement->execute();
+                       if($isOk){
+                         echo  " <p class='msgReussi'>La catégories a été ajouté avec succès à la base de données.</p> ";
+                         header("refresh:3;url=ajoutCategories.php");
+                      }else{
+                         echo  " <p class='msgReussi'>Votre catégories n'a pas pu ajouter à la base de données.</p> ";
+                         header("refresh:3;url=ajoutCategories.php");
+                      }
 
-                $insertCategories = "INSERT INTO categories(libelle, description) VALUES (:libelle, :description)";
-                $statement = $pdo->prepare($insertCategories);
-                $statement->bindValue(":libelle", $libelle);
-                $statement->bindValue(":description", $description);
-                $isOk = $statement->execute();
-                   if($isOk){
-                    echo  " <p class='msgReussi'>La catégories a été ajouté avec succès à la base de données.</p> ";
-                    header("refresh:3;url=ajoutCategories.php");
-                   }else{
-                    echo  " <p class='msgReussi'>Votre catégories n'a pas pu ajouter à la base de données.</p> ";
-                    header("refresh:3;url=ajoutCategories.php");
-                   }
-
+                  }else{
+                     header("refresh:7;ajoutCategories.php");
+                     echo "<p class ='msgEchec' >".$message."</p>";
+                     
+                  }
 
             }else{
-                $msgErr = "Veuillez renseigner tous les champs";
+               # echo = "Aucun champ ne doit etre vide";
 
             }
 
         }else{
-            echo"";
+           # echo"Veuiller soumettre le formulaire";
         }
         ?>
         
@@ -68,9 +80,6 @@ if(!isset($_SESSION['id_pers'])){
                <input class="butSubmit" type="submit" name="ajouter" value="Ajouter">
                <input onclick="fermeturePopup()" class="butSubmitFerm" type="button" name="" value="Fermer">
               </form>
-            <?php if(!empty($msgErr)){  ?>
-               <p class="msgErreur"><?php echo $msgErr; ?></p>
-               <?php } ?>
         </div>
         <!--Script permettant l'ouverture et la fermeture du formulaire-->
         <script> 
