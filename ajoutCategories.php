@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 if(!isset($_SESSION['id_pers'])){
-    header("Location: Index.php");
+    header("Location: index.php");
     exit(); 
   }
      $id_pers = $_SESSION['id_pers'];
@@ -25,6 +25,9 @@ $maxDes = 250;
 $message = 'Le libellé ou description saisi n\'est pas dans</br>la fourcette du nombre de caractéres autorisées</br>
            libellé['.$minLib.' '.$maxLib.'] et description['.$minDes.' '.$maxDes.'] qui sont valides';
            ;
+$msg= "Assurez-vous que les champs libelle et description ne contiennent que</br> 
+        des lettres majuscules, des lettres minuscules, des chiffres et des espaces.</br>
+        Veuillez à exclure tout autre type de caractère.";           
         if(isset($_POST['ajouter'])){
             if(!empty($_POST['libelle']) && !empty($_POST['description'])){
                 $libelle = htmlspecialchars($_POST['libelle']);
@@ -36,10 +39,11 @@ $message = 'Le libellé ou description saisi n\'est pas dans</br>la fourcette du
                 $description = trim($description);
                 
                  if((strlen($libelle)>=$minLib && strlen($libelle)<=$maxLib) && (strlen($description)>=$minDes && strlen($description)<=$maxDes)){
-                   $insertCategories = "INSERT INTO categories(libelle, description) VALUES (:libelle, :description)";
-                   $statement = $pdo->prepare($insertCategories);
-                   $statement->bindValue(":libelle", $libelle);
-                   $statement->bindValue(":description", $description);
+                    if(preg_match('/^[A-Za-z0-9 ]+$/', $libelle) && preg_match('/^[A-Za-z0-9 ]+$/', $description)){
+                     $insertCategories = "INSERT INTO categories(libelle, description) VALUES (:libelle, :description)";
+                     $statement = $pdo->prepare($insertCategories);
+                     $statement->bindValue(":libelle", $libelle);
+                     $statement->bindValue(":description", $description);
                      $isOk = $statement->execute();
                        if($isOk){
                          echo  " <p class='msgReussi'>La catégories a été ajouté avec succès à la base de données.</p> ";
@@ -48,6 +52,11 @@ $message = 'Le libellé ou description saisi n\'est pas dans</br>la fourcette du
                          echo  " <p class='msgReussi'>Votre catégories n'a pas pu ajouter à la base de données.</p> ";
                          header("refresh:3;url=ajoutCategories.php");
                       }
+
+                    }else{
+                     header("refresh:7;ajoutCategories.php");
+                     echo "<p class ='msgEchec' >".$msg."</p>";
+                    }
 
                   }else{
                      header("refresh:7;ajoutCategories.php");
