@@ -12,9 +12,12 @@ ob_start(); // Demarrage de la mise en tempon
 <body>
 <?php 
 include_once('Configuration.php'); //Connexion a la base...
-$messageMail = 'Votre adresse email est invalide'; //Initialisation des variable messages
+$messageMail = 'Votre adresse email est invalide.'; //Initialisation des variable messages
 $messageTel = 'Votre numéro de téléphone est invalide.';
-$messageSuc = ''; 
+$messageSuc = '';
+$msg = "Veuillez exclure les caractères spéciaux et/ou  les chiffres dans les champs 'prénom' et 'nom',</br> s'il vous plaît."; 
+$msge = 'Le prénom ou/et nom saisi n\'est pas dans la fourcette du nombre de caractéres autorisées</br>
+           prénom[3 30] et nom[2 15] qui sont valides';
           if(isset($_POST['inscrire'])){ //Verifions si le formulaire est soumis
 
                if(!empty($_POST['prenom']) && !empty($_POST['nom']) 
@@ -46,7 +49,9 @@ $messageSuc = '';
                     $password = trim($password);
                     $password = hash('sha512',$password);
 
-                      if(preg_match('/^(70|75|76|77|78)\d{7}$/', $phone)){ //Verifions si le  numéro de téléphone est valide.
+                    if(preg_match('/^[A-Za-z ]+$/', $prenom) && preg_match('/^[A-Za-z ]+$/', $nom)){ //Vérifions si prénom et nom contiennent que des lettres alphabétiques
+                      if((strlen($prenom)>=3 && strlen($prenom)<=30) && (strlen($nom)>=2 && strlen($nom)<=15)){
+                       if(preg_match('/^(70|75|76|77|78)\d{7}$/', $phone)){ //Verifions si le  numéro de téléphone est valide.
                           $insert = "INSERT INTO  `personnels` (prenom, nom, phone, sexe, age, statut, password) VALUES (:prenom, :nom, :phone, :sexe, :age, 'personnel', :password)"; //Requete d'insertion utilisateur
                           $resultat = $pdo->prepare($insert); //Prepartion de la requete
                           $resultat->bindParam(":prenom", $prenom, PDO::PARAM_STR);   //Liaison des paramètres aux variables 
@@ -88,8 +93,19 @@ $messageSuc = '';
 
                       }else{
                         header("refresh:3;url=Inscription.php");
-                        echo "<p class ='msgSucces' >".$messageTel."<p>";
+                        echo "<p class ='msgEchec' >".$messageTel."<p>";
                       }
+
+                     }else{
+                       header("refresh:6;Inscription.php");
+                       echo "<p class ='msgEchec' >".$msge."</p>";
+                    }
+
+                    }else{
+                      header("refresh:6;Inscription.php");
+                      echo "<p class ='msgEchec' >".$msg."</p>";
+                    }
+
               }else{
                # echo"Aucun champs ne doit pas etre vide";
               }
@@ -116,7 +132,7 @@ $messageSuc = '';
             <label class="label" for="tel">Numéro téléphone</label></br>
             <input id="tel" class="formInput" type="text" name="phone" placeholder="Votre numéro téléphone" required/></br> 
             <p class="form-phrase">Déjà inscrit? 
-            <a href="Index.php">Connectez-vous ici</a></p>
+            <a href="index.php">Connectez-vous ici</a></p>
          </div> 
          <div> 
              <label class="label" >Sexe</label></br>
