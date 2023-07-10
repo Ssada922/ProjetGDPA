@@ -129,9 +129,10 @@
   font-size: 22px;
   text-align: center;
 }*/
+html{
+  background-image: url('img/image2.jpg');
+}
 body{
-  background-color: rgb(0, 0, 0);
-  background-color: white;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -149,27 +150,27 @@ body{
   }
 body> section> header{
   grid-area: header;
-  background-color: white;
+  /*background-color: white; */
 }
 body> section> aside{
   grid-area: aside;
-  background-color: white;
+  /*background-color: white; */
 }
 body> section> main{
   grid-area: main;
-  background-color: white;
+ /* background-color: white;*/
 }
 body> section> footer{
   grid-area: footer;
-  background-color: white;
+ /* background-color: white;*/
 }
 header{
   width: 100%;
-  background-color: white;
+  /*background-color: white;*/
 }
 body> section> article{
   grid-area: article;
-  background-color: white;
+  /*background-color: white;*/
 }
   .container{
       width: 95%;
@@ -259,7 +260,7 @@ body> section> article{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */
-    margin: 100px auto;
+    margin: 20px auto;
     width: 360px;
     border: 1px solid #c4c4c4;
     padding: 30px 25px 10px 25px;
@@ -308,19 +309,8 @@ body> section> article{
     font-weight: bold;
     margin: 0 30%;
   }
-  #mysection{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-gap: 10px;
-  }
-  .one{
-    background-color: blue;
-  }
-  .two{
-    background-color: aquamarine;
-  }
-  .msgSucces{
+ 
+ .msgSucces{
     margin-top: 30px;
     color: red;
     font-size: 22px;
@@ -341,7 +331,18 @@ body> section> article{
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-color: rgb(233, 14, 14);
+    margin-top: 20px;
 }
-
+.marque{
+  font-size: 26px;
+  color: #1c87c9;
+  margin-top: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+h1{
+  font-size: larger;
+  text-align: center;
+  margin-top: 120px;
+}
     
     
