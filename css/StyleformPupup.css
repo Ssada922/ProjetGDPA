@@ -1,8 +1,9 @@
 body{
     width: 100%;
     font-family: Arial, sans-serif;
-    /*background-color:aliceblue; */
-    background-color: white;
+    /*background-color:aliceblue; 
+    background-color: white;*/
+    background-image: url('image3.jpg');
 }
 .butOuvrirPop{
     position: fixed;
@@ -131,13 +132,32 @@ form.formContainer{
     background-color: aqua;
 }
 .maTable{
-    margin: 70px  30px;
-    min-width: 600px;
+   /* margin: 70px  30px; */
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+   /* min-width: 600px; */
+    width: 82%;
+    background-color: white;
+    border-collapse: collapse;
+    outline: none;
+    z-index: 1;
+    box-shadow: 0 5px 35px #1c87c9 ;
+}
+.tablePersonnel{
+    /*margin: 70px  30%;*/
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
     background-color: white;
     border-collapse: collapse;
     outline: none;
     z-index: 1;
     box-shadow: 0 5px 50px white;
+}
+.actionSup{
+ width: 5%;
 }
 th{
     background-color: #1c87c9;
@@ -198,18 +218,22 @@ a.button{
     border-radius: 20px;
 }
 .myTable{
-    margin: 15px  auto;
-    min-width: 64%;
+   /* margin: 15px  auto;
+    min-width: 64%; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 83%;
     background-color: white;
     border-collapse: collapse;
     outline: none;
     z-index: 1;
-    box-shadow: 0 5px 10px #1c87c9 ;
+    box-shadow: 0 5px 35px #1c87c9 ;
 }
 #container{
     background-color: #f3f0f0;
-    min-width: 60%;
-    margin: 1% 10%;
+    width: 88%;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid beige;
     border-radius: 75px;
 }
