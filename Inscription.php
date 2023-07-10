@@ -118,7 +118,7 @@ $msge = 'Le prénom ou/et nom saisi n\'est pas dans la fourcette du nombre de ca
 
 ?> 
 <section id="section" >
-                       <header></header>
+                       <header>  <marquee behavior="" direction="left"><p class="marque" >Inscrivez-vous dès maintenant pour profiter de </strong>MarketEnterprise.</strong><p></marquee></header>
                        <aside></aside>
                        <article></article>
     <main>     
@@ -142,7 +142,7 @@ $msge = 'Le prénom ou/et nom saisi n\'est pas dans la fourcette du nombre de ca
                 </select>
              <label class="label">Age</label>
                 <select class="formInputSelect" type=""  name="age">
-                  <?php for($age = 18; $age<=60; $age++): ?>
+                  <?php for($age = 18; $age<=65; $age++): ?>
                     <option values = "" ><?=$age; ?></option>
                   <?php endfor; ?>
                 </select>
@@ -157,7 +157,8 @@ $msge = 'Le prénom ou/et nom saisi n\'est pas dans la fourcette du nombre de ca
       </form>
    
     </main>
-    <footer></footer>
+    <footer>
+    </footer>
         </section>
    
 </body>
