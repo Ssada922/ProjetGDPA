@@ -14,7 +14,7 @@
 <?php
   //Connexion a la base de donnee
    //require('configuration.php');
-   include_once('Configuration.php'); //Connexion a la base de donnees
+include_once('Configuration.php'); //Connexion a la base de donnees
   
        if (isset($_POST['phone']) && !empty($_POST['phone'])){ 
 
@@ -68,11 +68,7 @@
       }
            
 ?>
-      <section id="mysection" >
-         <div class="one" >
-
-         </div>
-        <div class="two" >
+        <marquee behavior="" direction="left"><p class="marque" >Bienvenue sur <strong>MarketEnterprise</strong>, votre application en ligne dédiée à la gestion de produits alimentaires.</strong><p></marquee>
             <form class="containerCon" action="" method="post">
                 <h1 class="form-titre">Connexion</h1></br>
                 <label class="label" for="tel">Numéro téléphone</label></br>
