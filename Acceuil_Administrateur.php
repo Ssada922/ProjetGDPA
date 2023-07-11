@@ -2,7 +2,7 @@
 session_start(); // Initialiser la session
 ob_start();
    if(!isset($_SESSION['id_pers'])){ // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
-    header("Location: index.php");
+    header("Location: Index.php");
     exit(); 
   }
   $id_pers = $_SESSION['id_pers'];
@@ -23,9 +23,9 @@ ob_start();
            <nav class="">
                    <h2>Market <span>Enterprise</span><strong>.</strong> </h2>
               <ul class="">
-              <li><a href="#">Accueil</a></li>
+              <li><a href="Acceuil_Administrateur.php">Accueil</a></li>
               <li><a href="#">Boutique</a></li>
-              <li><a href="#">Personnels</a></li>
+              <li><a href="listPersonnel.php">Personnels</a></li>
               <li><a href="Deconnexion.php">Deconnexion</a></li>
               </ul>
               <button type="button" ><a href="ajoutCategories.php">Creer Categories</a></button>
