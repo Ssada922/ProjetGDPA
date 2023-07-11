@@ -2,7 +2,7 @@
 session_start();
 ob_start();
    if(!isset($_SESSION['id_pers'])){
-    header("Location: index.php");
+    header("Location: Index.php");
     exit(); 
   }
 ?>
@@ -112,7 +112,7 @@ include_once('Configuration.php');
             </form>
         </div>
 
-        <section id="container" >
+        <!--<section id="container" >-->
                  <table class="myTable" >
                        <tr>
                           <th>Libelle</th>
@@ -131,7 +131,7 @@ include_once('Configuration.php');
                           <td><?=$produit['poids']; ?></td>
                           <td><?=$produit['prix']; ?></td>
                           <td><?=$produit['date_expiration']; ?></td>
-                          <td colspan="2" >
+                          <td class="largeurAction"  >
                             <div class="imContainer" >
                               <a  class='' href="modifierProduit.php?id_prod=<?=$produit['id_prod'];?>"> <img  class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
                               <a href="supprimerProduit.php?id_prod=<?=$produit['id_prod']; ?>"> <img  class="iconeTableau" width="" height="" src="iconeSup.jpg" alt=""></a>
@@ -140,7 +140,7 @@ include_once('Configuration.php');
                        </tr>
                        <?php endwhile; ?>
                  </table>
-        </section>
+       <!-- </section> -->
 
         <!--Script permettant l'ouverture et la fermeture du formulaire-->
         <script> 
@@ -155,5 +155,4 @@ include_once('Configuration.php');
           </script>
     </body>
 </html>
-
 
