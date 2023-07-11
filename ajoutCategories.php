@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 if(!isset($_SESSION['id_pers'])){
-    header("Location: index.php");
+    header("Location: Index.php");
     exit(); 
   }
      $id_pers = $_SESSION['id_pers'];
@@ -101,6 +101,7 @@ $msg= "Assurez-vous que les champs libelle et description ne contiennent que</br
               document.getElementById("monPopup").style.display = "none";
             }
           </script>
+           <!--<section id="container" >-->
                      <table class="maTable">
                         <tr>
                             <th>Libellé</th>
@@ -114,7 +115,7 @@ $msg= "Assurez-vous que les champs libelle et description ne contiennent que</br
                         <tr>
                             <td><?=$recupCategories['libelle']; ?></td>
                             <td><?=$recupCategories['description']; ?></td>
-                            <td colspan="2">
+                            <td class="largeurAction" >
                               <div class="imContainer">
                                 <a  class='' href="modifierCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"> <img  class="iconeTableau" width="" height="" src="iconeMod.jpg" alt=""></a>
                                 <a  class='' href="supprimerCategories.php?id_cat=<?=$recupCategories['id_cat'];?>"> <img class="iconeTableau" width="" height="" src="iconeSup.jpg" alt=""></a>
@@ -122,6 +123,7 @@ $msg= "Assurez-vous que les champs libelle et description ne contiennent que</br
                             </td>
                         </tr>
                         <?php } ?>
-                     </table>       
+                     </table>    
+           <!-- </section>   -->
     </body>
 </html>
